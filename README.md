@@ -1,20 +1,207 @@
-## YOLOv8 Live Object Detection Android Application
+🦯 Vision Assist
+AI-powered Smart Navigation System for Visually Impaired Individuals
 
-### Notice
-This project has been moved to a new repository. You can find the latest version and updates [here](https://github.com/surendramaran/YOLO).
+Real-time Object Detection + Hardware-based Obstacle Avoidance
 
-### Description
-This Android application is designed to perform live object detection using the YOLOv8 machine learning model. YOLOv8 (You Only Look Once version 8) is known for its real-time object detection capabilities, and this app brings that functionality to Android devices.
+📌 Overview
 
-### Getting Started
-To use this repository for any custom YOLOv8 Object detection model, follow these steps:
-1. Clone this repository to your local machine using `git clone https://github.com/surendramaran/YOLOv8-TfLite-Object-Detector`.
-2. Put your .tflite model and .txt label file inside the assets folder
-3. Rename paths of your model and labels file in Constants.kt file
-4. **Build and Run:**
+Vision Assist is an integrated assistive navigation system designed to help visually impaired users detect obstacles and navigate safely in both indoor and outdoor environments.
 
-### Contributing
-Contributions are welcome! If you want to contribute to this project, feel free to fork the repository and submit a pull request with your changes.
+The system combines:
 
-### Contact
-For any questions or feedback, feel free to contact [surendramaran8@gmail.com] or open an [issue](https://github.com/surendramaran/YOLOv8-TfLite-Object-Detector/issues/new) in the repository.
+✔ 1. Smartphone-based Object Detection
+
+Using YOLOv8-Nano (COCO) + a custom-trained YOLOv8-Nano model for detecting:
+
+Stairs 
+
+Potholes
+
+Doors
+
+All 80 COCO classes (people, vehicles, obstacles, etc.)
+
+✔ 2. Belt-Mounted Wearable Hardware
+
+Components used:
+
+Arduino UNO R3
+
+HC-SR04 Ultrasonic sensor
+
+Servo mount 
+
+Bluetooth Module (HC-05)
+
+2 x Li-ion Cells (18650) + Double Cell Holder
+
+This module detects low-level obstacles that the smartphone camera may miss and alerts the user.
+
+✔ 3. Sensor Fusion (Camera + Ultrasonic)
+
+Combines both detection sources for reliability under:
+
+Low light
+
+Small / low obstacles
+
+Partially occluded objects
+
+Irregular surfaces
+
+🚀 Features
+
+📱 Real-time object detection (YOLOv8 Nano – TFLite)
+
+🧠 Custom YOLOv8 model (stairs, potholes, doors)
+
+🔊 Voice alerts (Text-to-Speech)
+
+📳 Haptic alerts (future upgrade)
+
+🛠️ Ultrasonic belt for depth sensing
+
+🔁 FSM-based hardware alert logic
+
+⚡ Low-latency on-device inference
+
+🧭 Designed for real-world navigation
+
+🧩 System Architecture
+Smartphone Camera → YOLOv8 Nano → Object Detection → Voice Alerts
+                        |
+                        └──> Custom YOLO (Stairs / Potholes / Doors)
+
+Wearable Belt → Ultrasonic Sensor → Distance Measurement → Audio Alerts (FSM)
+
+
+Both components work independently but complement each other.
+
+🧠 YOLOv8-Nano – Theory
+📍 What is YOLOv8-Nano?
+
+A mobile-optimized lightweight variant that delivers fast inference speeds on Android devices.
+
+📌 Key Concepts
+
+One-stage detector
+
+Anchor-free
+
+FPN (Feature Pyramid Network)
+
+Decoupled head (classification + regression)
+
+NMS for merging overlapping boxes
+
+🧠 Custom YOLOv8-Nano (Stairs, Potholes, Doors)
+📌 Dataset
+
+Includes:
+
+Stairs
+
+Potholes
+
+Doors
+
+Annotated in YOLO format.
+
+📌 Training (Google Colab)
+pip install ultralytics
+yolo detect train model=yolov8n.pt data=data.yaml epochs=100 imgsz=640
+yolo export model=best.pt format=tflite
+
+
+Outputs:
+
+best.pt → Best weights
+
+best.tflite → Mobile model
+
+Integrated into the Android app for environment-specific detection.
+
+🔧 Hardware (Wearable Belt Module)
+Component	Purpose
+Arduino UNO R3	Main controller
+HC-SR04 Ultrasonic	Distance detection
+Servo Mount	Optional scanning
+Battery	Power
+Working
+
+Distance = (Time × Speed of Sound) / 2
+
+FSM Logic:
+
+Safe Zone → "Path Clear"
+
+Warning Zone → "Caution,obstacle ahead"
+
+Danger Zone → "Stop - Obstacle very close"
+
+
+
+🛠️ Installation & Running Instructions
+📱 Running the Android App
+git clone https://github.com/Bhavishya-chawla08/VisionAssist.git
+
+
+Open in Android Studio
+
+Sync Gradle
+
+Place TFLite models in:
+
+app/src/main/assets/
+
+
+Run on physical device (required for camera)
+
+🔧 Running the Hardware
+
+Install Arduino IDE
+
+Open:
+
+Hardware/Arduino_Code/main.ino
+
+
+Select board: Arduino UNO
+
+Upload
+
+Power the module
+
+Test buzzer response
+
+📊 Expected Results
+
+0.50–0.55 mAP on YOLOv8 Nano (COCO)
+
+High accuracy for:
+
+Stairs
+
+Doors
+
+Potholes
+
+Ultrasonic module detects up to 4 meters reliably.
+
+🎯 Conclusion
+
+Vision Assist combines a mobile AI detection system with a wearable ultrasonic module to provide safe navigation support for visually impaired users. Its hybrid design ensures effective detection of both high-level and low-level obstacles.
+
+🔮 Future Scope
+
+GPS-based navigation
+
+Gyroscope alignment
+
+Improved haptic feedback
+
+Face recognition
+
+Smart glasses integration
+
+ArduCam / LiDAR expansion
