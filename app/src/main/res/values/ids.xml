@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btnStartNav" type="id" />
+    <item name="btnTutorial" type="id" />
+    <item name="micButton" type="id" />
+    <item name="txtDistance" type="id" />
+    <item name="txtAlert" type="id" />
+    <item name="progressBar" type="id" />
+</resources>
