@@ -1,4 +1,4 @@
-🦯 Vision Assist
+🦯 **Vision Assist**
 
 AI-powered Smart Navigation System for Visually Impaired Individuals
 
