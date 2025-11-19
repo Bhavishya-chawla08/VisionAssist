@@ -1,4 +1,5 @@
 🦯 Vision Assist
+
 AI-powered Smart Navigation System for Visually Impaired Individuals
 
 Real-time Object Detection + Hardware-based Obstacle Avoidance
